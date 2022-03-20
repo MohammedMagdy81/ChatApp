@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="vm"
+            type="com.example.chat.login.LoginViewModel" />
+        <import type="android.view.View"/>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".login.LoginActivity">
+
+        <EditText
+            android:id="@+id/et_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="E-mail"
+            android:textSize="18sp"
+            android:layout_margin="12dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:text="@={vm.email}"
+            />
+<TextView
+    android:id="@+id/email_error"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:layout_constraintTop_toBottomOf="@id/et_email"
+    app:layout_constraintStart_toStartOf="@id/et_email"
+    android:text="Please Enter E-mail !"
+    android:textSize="14sp"
+    android:textColor="#DD1111"
+    android:layout_margin="4dp"
+    android:visibility="@{vm.emailError?View.VISIBLE:View.GONE}"
+    />
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:textSize="18sp"
+            android:layout_margin="12dp"
+            app:layout_constraintTop_toBottomOf="@id/email_error"
+            app:layout_constraintStart_toStartOf="parent"
+            android:text="@={vm.password}"
+            />
+        <TextView
+            android:id="@+id/password_error"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/password"
+            app:layout_constraintStart_toStartOf="@id/et_email"
+            android:text="Please Enter Correct Passsword !"
+            android:textSize="14sp"
+            android:textColor="#DD1111"
+            android:layout_margin="4dp"
+            android:visibility="@{vm.passwordError?View.VISIBLE:View.GONE}"
+
+            />
+        <Button
+            android:id="@+id/login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/password_error"
+            android:layout_margin="16dp"
+            android:text="Login"
+            android:textSize="18sp"
+            android:textAllCaps="false"
+            android:onClick="@{()->vm.login()}"
+            />
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           app:layout_constraintTop_toBottomOf="@id/login"
+           android:orientation="horizontal"
+           android:gravity="center"
+           android:padding="4dp"
+           >
+           <TextView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="Don't have Account ?"
+               app:layout_constraintTop_toBottomOf="@id/login"
+
+               />
+
+           <TextView
+               android:id="@+id/text_register"
+               android:layout_width="wrap_content"
+               android:layout_height="30dp"
+               android:layout_marginStart="6dp"
+               android:text="Register "
+               android:textColor="#D31414"
+               android:textSize="16dp"
+               android:textStyle="bold"
+               android:onClick="@{()->vm.goToRegister()}"
+               app:layout_constraintTop_toBottomOf="@id/login" />
+       </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
